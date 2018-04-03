@@ -1,0 +1,39 @@
+{% extends "_layout" %}
+{% set page_title = 'Tornooi 2018 - 28 juli' %}
+{% set page_description = 'Op 28 juli 2018 - Beachvolleytornooi Westrode' %}
+{% block content %}
+
+
+
+<!-- BEGIN NAV -->
+
+
+{% cache globally for 3 years %}
+{% set entries = craft.entries.section('navigatie') %}
+    {% nav entry in entries %}
+		{# Check for entry type / get related entry #}
+		{% if entry.type == 'linkedchannelentry' %}
+			{% set linkedEntry = entry.paginaSelectie.limit(1).first() %}
+		{% endif %}
+
+		{% if linkedEntry %}
+			<li>
+				{# Link to a linked channel entry #}
+				<a href="{{ linkedEntry.url }}" {% if entry.hasDescendants() %}class="has-dropdown"{% endif %}>{{ linkedEntry.title }}</a>
+			</li>
+		{% endif %}
+		{% if entry.hasDescendants() %}
+			{% for entry in craft.entries.section('navigatie').descendantOf( entry.id).find() %}
+
+				<a href="{{entry.url}}" {% if entry.hasDescendants() %}class="has-dropdown"{% endif %}>{{entry.title}}</a> 
+
+			{% endfor %}
+		{% endif %}
+    {% endnav %}
+{% endcache %}
+
+
+<!-- END NAV -->
+
+
+{% endblock %} 

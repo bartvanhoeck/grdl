@@ -1,0 +1,47 @@
+{{ craft.freeform.form("contactForm", {
+    labelClass: "form-label",
+    inputClass: "form-control",
+    instructionsBelowField: true,
+    submitClass: "btn btn-success",
+    overrideValues: {
+        hiddenFieldHandle: entry.id,
+    }
+}).render() }}
+
+<!--
+<div class="smart-forms smart-container">
+  <form method="post" action="smart-form/contact/php/smartprocess.php" id="smart-form">
+    <div class="form-body">
+      <div class="section">
+        <label class="field prepend-icon">
+          <input type="text" name="sendername" id="sendername" class="gui-input" placeholder="Enter name">
+          <span class="field-icon"><i class="fa fa-user"></i></span> </label>
+      </div>
+
+      
+      <div class="section">
+        <label class="field prepend-icon">
+          <input type="email" name="emailaddress" id="emailaddress" class="gui-input" placeholder="Email address">
+          <span class="field-icon"><i class="fa fa-envelope"></i></span> </label>
+      </div>
+
+      
+      <div class="section">
+        <label class="field prepend-icon">
+          <textarea class="gui-textarea" id="sendermessage" name="sendermessage" placeholder="Enter message"></textarea>
+          <span class="field-icon"><i class="fa fa-comments"></i></span> </label>
+      </div>
+
+      
+      <div class="result"></div>
+ 
+      
+    </div>
+
+    <div class="form-footer">
+      <button type="submit" data-btntext-sending="Sending..." class="button btn btn-primary">Verstuur</button>
+    </div>
+
+  </form>
+</div>
+<!-- end .smart-forms section --> 

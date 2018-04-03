@@ -1,0 +1,97 @@
+<div class="fancy-title mb30">
+  <h3 class="text-uppercase">Een ploeg inschrijven</h3>
+  <div class="fancy-title-sep gray-sep"></div>
+</div>
+<!--title-->
+<div class="smart-wrap">
+  <div class="smart-forms smart-container"> 
+	  {% if craft.request.param('sent') %}
+	  <p>We hebben je inschrijvingsformulier goed ontvangen, <a href="{{siteUrl}}inschrijven">nog een team inschrijven</a>?</p>
+    <div class="alert alert-warning" role="alert"> <strong>Let op!</strong> je bent pas officieel ingeschreven wanneer we het <strong>inschrijvingsgeld ontvangen</strong> hebben op onze rekening. </div>
+	  <p><strong>Gelieve &euro;30 te storten op rekeningnummer : BE12 3456 7890 12 met vermelding van je gekozen ploegnaam</strong>.</p>
+    
+    {% else %}
+    <form method="post" action="" id="smart-form" accept-charset="UTF-8" enctype="multipart/form-data">
+      {{ getCsrfInput() }}
+      <input type="hidden" name="action" value="guestEntries/saveEntry">
+      <input type="hidden" name="sectionId" value="15">
+      <input type="hidden" name="redirect" value="{{ craft.request.url }}?sent=1">
+      <div class="form-body">
+		  <h4 class="text-uppercase">Ploeg informatie</h4>
+        <div class="section">
+          <label class="field prepend-icon">
+            <input type="text" name="title" id="Title" class="gui-input" placeholder="Ploegnaam" required>
+            <span class="field-icon"><i class="fa fa-users "></i></span> </label>
+        </div>
+        <!-- end section -->
+		  <div class="section">
+          <fieldset class="form-group">
+            <legend style="font-size: 1.2em;">Niveau van de ploeg</legend>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="fields[niveau]" id="mannen" value="recreatief" checked >
+                <span style="margin-left: 20px;">recreatief</span> </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="fields[niveau]" id="vrouwen" value="geoefend">
+                <span style="margin-left: 20px;">geoefend</span> </label>
+            </div>
+          </fieldset>
+        </div>
+        <!-- end section -->
+        <div class="section">
+          <fieldset class="form-group">
+            <legend style="font-size: 1.2em;">Geslacht spelers</legend>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="fields[geslachtSpelers]" id="mannen" value="mannen" checked>
+                <span style="margin-left: 20px;">mannen</span> </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="fields[geslachtSpelers]" id="vrouwen" value="vrouwen">
+                <span style="margin-left: 20px;">vrouwen</span> </label>
+            </div>
+			  <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="fields[geslachtSpelers]" id="vrouwen" value="gemengd">
+                <span style="margin-left: 20px;">gemengd</span> </label>
+            </div>
+          </fieldset>
+        </div>
+		<h4 class="text-uppercase">Gegevens verantwoordelijke</h4>
+        <!-- end section -->
+        <div class="section">
+          <label class="field prepend-icon">
+            <input type="text" name="fields[naamVerantwoordelijke]" id="naamVerantwoordelijke" class="gui-input" placeholder="Naam verantwoordelijke" required>
+            <span class="field-icon"><i class="fa fa-user"></i></span> </label>
+        </div>
+        <!-- end section -->
+        <div class="section">
+          <label class="field prepend-icon">
+            <input type="email" name="fields[emailadres]" id="emailadres" class="gui-input" placeholder="Email adres" required>
+            <span class="field-icon"><i class="fa fa-envelope"></i></span> </label>
+        </div>
+        <!-- end section -->
+        <div class="section">
+          <label class="field prepend-icon">
+            <input type="tel" name="fields[gsmNummer]" id="gsmNummer" class="gui-input" placeholder="GSM nummer" required>
+            <span class="field-icon"><i class="fa fa-phone-square"></i></span> </label>
+        </div>
+        <!-- end section -->
+        
+        <div class="result"></div>
+        <!-- end .result  section --> 
+        
+      </div>
+      <!-- end .form-body section -->
+      <div class="form-footer">
+        <button type="submit" data-btntext-sending="bezig met versturen..." class="button btn btn-primary">Inschrijven</button>
+      </div>
+      <!-- end .form-footer section -->
+    </form>
+    {% endif %} </div>
+  <!-- end .smart-forms section --> 
+</div>
+<!-- end .smart-wrap section --> 

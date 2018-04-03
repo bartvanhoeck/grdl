@@ -1,0 +1,15 @@
+<div class="container mb70">
+	<div class="fancy-title mb30">
+		<h3>Met dank aan</h3>
+		<div class="fancy-title-sep gray-sep"></div>
+	</div><!--title-->
+	<ul class="clients-grid mb0 clearfix">
+		{% for sponsor in craft.entries.section('sponsors') %}
+			{% for afbeelding in sponsor.afbeeldingen.limit(1) %}
+			<a href="{{sponsor.hyperlink.url}}">
+				<li style="width: 200px; height: 150px"><img src="{{afbeelding.getUrl('sponsorThumb')}}" class="img-fluid" alt="{{sponsor.title}}"></li>
+			</a>
+			{% endfor %}
+		{% endfor %}
+	</ul>
+</div>

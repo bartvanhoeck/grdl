@@ -1,0 +1,34 @@
+<div class="bg-faded pt90 pb90">
+	<div class="container">
+		<div class="title-heading1 mb50">
+			<h3>Een email ontvangen van zodra de inschrijvingen openen?</h3>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 mr-auto ml-auto">
+				
+				{% if craft.request.param('sent') %}
+					<p class="callout success">
+						Van zodra de inschrijvingen geopend zijn, sturen we je een email. 
+					</p>
+				{% else %}
+					<form id="widget-subscribe-form" method="post" action="" role="form" accept-charset="UTF-8" class="mb0">
+						{{ getCsrfInput() }}
+
+						<input type="hidden" name="action" value="guestEntries/saveEntry">
+						<input type="hidden" name="redirect" value="success">
+						<input type="hidden" name="sectionId" value="4">
+						<input type="hidden" name="redirect" value="{{ craft.request.url }}?sent=1">
+
+						<div class="input-group input-group-lg">
+
+							<input id="title" name="title" type="email" name="widget-subscribe-form-email" class="form-control required" placeholder="Uw emailadres">
+							<span class="input-group-btn">
+								<button class="btn btn-primary" type="submit">Inschrijven</button>
+							</span>
+						</div>
+					</form>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>

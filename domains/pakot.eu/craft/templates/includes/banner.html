@@ -1,0 +1,23 @@
+{% set entry = craft.entries.section('banner').first() %}
+{% for bannerAfbeelding in entry.bannerAfbeelding.limit(1) %}
+	
+<div class="bg-parallax fullscreen" data-jarallax='{"speed": 0.2}' style='background-image: url("{{bannerAfbeelding.url}}")'>
+	<div class="d-flex align-items-center">
+		<div class="container">
+			<div class=" row">
+				<div class="col-md-10 ml-auto mr-auto text-center">
+					<div class="hero-text-style1">
+						<div class="h1  text-uppercase mb20" style="color:#ffffff;">
+							{{entry.bannerGroteTitel}}
+						</div><!--/.tlt-->
+						<p class="lead">
+							{{entry.bannerKleineTitel}}
+						</p>
+						<a href="{{ entry.bannerLink.url }}" data-scroll class="btn btn-rounded btn-primary">{{ entry.bannerLink.text }}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!--hero-->
+{% endfor %}

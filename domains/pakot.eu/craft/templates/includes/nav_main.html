@@ -1,0 +1,49 @@
+{% set nav = craft.amNav.getNavRaw("hoofdmenu") %}
+
+{% macro addNodeToNavigation(node, index) %}
+    {%- set nodeClasses = [] -%}
+    {%- if node.hasChildren -%}
+        {%- set nodeClasses = nodeClasses|merge(['has-children']) -%}
+    {%- endif -%}
+    {%- if node.active or node.hasActiveChild -%}
+        {%- set nodeClasses = nodeClasses|merge(['active']) -%}
+    {%- endif -%}
+    {%- if node.listClass|length -%}
+        {%- set nodeClasses = nodeClasses|merge([node.listClass]) -%}
+    {%- endif -%}
+
+    <li{% if nodeClasses|length %} class="{{ nodeClasses|join(' ') }}"{% endif %}>
+        <a href="{{ node.url }}" class="nav-link" title="{{ node.name }}"{% if node.blank %} target="_blank"{% endif %}>{{ node.name }}</a>
+        {% if node.hasChildren %}
+            <ul class="nav__level{{ (node.level + 1) }}">
+                {% for subnode in node.children %}
+                    {{ _self.addNodeToNavigation(subnode, loop.index) }}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endmacro %}
+<div id="preloader">
+	<div id="preloader-inner"></div>
+</div><!--/preloader-->
+
+<!-- Site Overlay -->
+<div class="site-overlay"></div>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+	<div class="container">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		{% for logo in gurdiloGlobals.siteLogo %}
+		<a class="navbar-brand" href="{{siteUrl}}"><img src="{{logo.url}}" alt="Gurdilo Vzw" height="20px"></a>
+		{% endfor %}
+		<div  id="navbarNavDropdown" class="navbar-collapse collapse">
+			<ul class="navbar-nav ml-auto">
+				{% for node in nav %}
+            		{{ _self.addNodeToNavigation(node, loop.index) }}
+				{% endfor %}
+			</ul>        
+		</div>
+	</div>
+</nav>

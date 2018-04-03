@@ -1,0 +1,17 @@
+<footer class="footer footer-light pt50 pb30">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6  ml-auto mr-auto text-center">
+				<ul class="social-icons list-inline">
+					{% for block in gurdiloGlobals.globalMatrixField %}
+					<li class="list-inline-item">
+						<a href="{{block.hyperlink.url}}"><i class="fa {{block.icoon.class}}" style="margin-right:-5px;"></i>{{block.tekst}}</a>
+					</li>
+					{% endfor %} 
+				</ul>
+				{{ include(template_from_string(gurdiloGlobals.copyright)|raw) }}
+			</div>
+		</div>
+	</div>
+</footer><!--/footer-->
+{% include 'includes/js' %}

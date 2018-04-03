@@ -1,0 +1,14 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+{% include 'includes/nav_main' %}
+
+        <div class="container mb70">
+            {% set entry = craft.entries.section('overGurdilo').first() %}
+			{{ entry.tekst }}
+        </div>
+        {% include 'includes/footer' %}
+        
+
+{% endblock %} 
